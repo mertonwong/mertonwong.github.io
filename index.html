@@ -1,0 +1,44 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f8f8f5"><title>每日资讯</title><style>*{box-sizing:border-box}body{margin:0;background:#f8f8f5;color:#25332d;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}header,main,footer{max-width:740px;margin:auto}header{display:flex;align-items:center;justify-content:space-between;padding:19px 24px 15px;border-bottom:1px solid #dfe4dc}h1{font-size:17px;margin:0;font-weight:650}header span{font-size:11px;color:#7b837d}main{padding:0 24px}article{padding:18px 0 15px;border-bottom:1px solid #dfe4dc}summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}h2{font-size:18px;font-weight:600;line-height:1.65;letter-spacing:.1px;margin:0 0 7px}.brief{margin:0;font-size:14px;line-height:1.85;color:#58665e}.meta{font-size:10px;color:#7d867f;margin-top:10px;display:flex;justify-content:space-between;gap:10px}.more{color:#507462;white-space:nowrap}.more::after{content:' ＋'}details[open] .more{font-size:0}details[open] .more::after{content:'收起 −';font-size:10px}.detail{padding:18px 0 0}.detail section{margin:0 0 16px;border-left:2px solid #d8e2d6;padding-left:14px}h3{font-size:12px;color:#42624d;margin:0 0 6px}.detail p{font-size:14px;line-height:1.9;margin:0}.detail small,.controls small{color:#8b938c;font-size:10px;line-height:1.6;overflow-wrap:anywhere}.detail small{display:block;margin-top:5px}.detail .original{font-size:10px;color:#8b938c;margin-bottom:8px}.controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}.controls>small{max-width:75%}.votes{display:flex;gap:5px}.votes button{font:inherit;font-size:18px;width:38px;height:36px;border:1px solid #dce3da;background:transparent;border-radius:7px;color:#7b897d;cursor:pointer}.votes button[aria-pressed=true]{background:#e4eee2;color:#245a3c;border-color:#91ad93}button:focus-visible,summary:focus-visible{outline:2px solid #6d9273;outline-offset:3px}footer{padding:20px 24px;font-size:10px;color:#8b938c;text-align:center}#status{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);max-width:calc(100% - 30px);width:max-content;background:#244032;color:#fff;font-size:12px;padding:10px 15px;border-radius:8px;pointer-events:none;box-shadow:0 3px 16px #0001;z-index:10}#status:empty{display:none}.empty{padding:30px 0;color:#7b837d;font-size:14px}@media(max-width:600px){header{padding:16px 19px 13px}main{padding:0 19px}h2{font-size:17px}article{padding-top:17px}.votes button{min-width:40px;min-height:40px}footer{padding-bottom:60px}}
+</style></head><body><header><h1>每日资讯</h1><span id="date"></span></header><main id="feed"></main><p id="status" role="status" aria-live="polite"></p><footer>↑ 更想看　↓ 少看些 · 下次更新生效</footer><script>const edition = {"date": "2026-10-25", "updated": "2026-10-25T15:07:21.172731+00:00", "status": "ok", "coverage": {"SignalBase": "当日返回3条，读取后保留1条新闻；其余为产品反馈联系人和一般AI使用观点。", "YZData": "当日查询成功，0条匹配文章。"}};
+const articles = [
+  {
+    "id": "2026-10-25-cls-oil",
+    "date": "2026-10-25",
+    "title": "特朗普称油价很快会下跌",
+    "brief": "财联社10月25日快讯：特朗普表示，油价将很快下跌。",
+    "source": "CLS",
+    "kind": "快讯",
+    "cite": "[CLS｜2026-10-25]",
+    "original": "财联社10月25日电，特朗普称，油价很快会下跌",
+    "tags": [
+      "宏观市场",
+      "能源",
+      "原油"
+    ],
+    "points": [
+      [
+        "最新表态",
+        "特朗普称油价很快会下跌。"
+      ]
+    ]
+  }
+];
+</script><script>/* Preference learning is local to this browser; each dated edition freezes its order. */
+(function(root){
+function score(article,votes,date){let sum=0;const target=Date.parse(date);for(const v of Object.values(votes)){const age=Math.max(0,(target-Date.parse(v.date))/86400000);const overlap=article.tags.filter(t=>v.tags.includes(t)).length;sum+=v.value*Math.pow(.98,age)*Math.min(2,overlap)*.24;}return Math.max(-2,Math.min(2,sum));}
+function order(items,votes,date,saved){const ids=new Set(items.map(x=>x.id));if(saved){const kept=saved.filter(id=>ids.has(id));return [...kept,...items.filter(x=>!kept.includes(x.id)).map(x=>x.id)];}return items.map((x,i)=>({id:x.id,value:(items.length-i)/items.length+score(x,votes,date)})).sort((a,b)=>b.value-a.value).map(x=>x.id);}
+root.ResearchRanking={score,order};if(typeof module!=='undefined')module.exports=root.ResearchRanking;
+})(typeof globalThis!=='undefined'?globalThis:this);
+</script><script>const key='wendy-research-preferences-v1';let state={votes:{},orders:{}};let persistent=true;try{state=JSON.parse(localStorage.getItem(key))||state;}catch(e){persistent=false;}state.votes ||= {};state.orders ||= {};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const feed=document.querySelector('#feed'),status=document.querySelector('#status');
+function save(){try{localStorage.setItem(key,JSON.stringify(state));return true;}catch(e){persistent=false;return false;}}
+const dayItems=articles.filter(a=>a.date===edition.date);const ids=ResearchRanking.order(dayItems,state.votes,edition.date,state.orders[edition.date]);state.orders[edition.date]=ids;save();
+// Keep recent frozen editions only; votes retain their dates for gradual decay.
+for(const day of Object.keys(state.orders).sort().slice(0,-14))delete state.orders[day];
+document.querySelector('#date').textContent=edition.date+' · '+dayItems.length+' 条';
+feed.innerHTML=ids.map(id=>{const a=dayItems.find(x=>x.id===id);return `<article data-id="${esc(id)}"><details><summary><h2>${esc(a.title)}</h2><p class="brief">${esc(a.brief)}</p><div class="meta">${esc(a.source)} · ${esc(a.kind)}<span class="more">展开关键点</span></div></summary><div class="detail">${a.points.map(p=>`<section><h3>${esc(p[0])}</h3><p>${esc(p[1])}</p><small>${esc(a.cite)}</small></section>`).join('')}<p class="original">${esc(a.original)}</p></div></details><div class="controls"><small>${esc(a.cite)}</small><div class="votes" aria-label="调整未来排序"><button data-value="1" aria-label="提高此类内容未来排序" title="更想看此类内容">↑</button><button data-value="-1" aria-label="降低此类内容未来排序" title="减少此类内容">↓</button></div></div></article>`}).join('');
+if(!dayItems.length)feed.innerHTML='<p class="empty">'+esc(edition.status==='error'?'今日资料暂时无法更新，稍后重试。':'今日暂无新文章。')+'</p>';
+function paint(article){const vote=state.votes[article.dataset.id]?.value;article.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',vote===Number(b.dataset.value)));}
+feed.querySelectorAll('article').forEach(el=>{paint(el);el.querySelectorAll('button').forEach(b=>b.onclick=()=>{const a=dayItems.find(x=>x.id===el.dataset.id),value=Number(b.dataset.value);const previous=state.votes[a.id]?.value;if(previous===value)delete state.votes[a.id];else state.votes[a.id]={value,tags:a.tags,date:edition.date};const stored=save();paint(el);status.textContent=stored?(previous===value?'已取消反馈':'已记下，下次更新调整；今日顺序不变'):'浏览器未允许保存，偏好仅在本次打开期间有效';});});
+if(!persistent)status.textContent='浏览器未允许保存，排序偏好暂时无法跨天保留。';
+</script></body></html>
