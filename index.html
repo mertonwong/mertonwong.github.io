@@ -1,6 +1,574 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f8f8f5"><title>每日资讯</title><style>*{box-sizing:border-box}body{margin:0;background:#f8f8f5;color:#25332d;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}header,main,footer{max-width:740px;margin:auto}header{display:flex;align-items:center;justify-content:space-between;padding:19px 24px 15px;border-bottom:1px solid #dfe4dc}h1{font-size:17px;margin:0;font-weight:650}header span{font-size:11px;color:#7b837d}main{padding:0 24px}article{padding:18px 0 15px;border-bottom:1px solid #dfe4dc}summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}h2{font-size:18px;font-weight:600;line-height:1.65;letter-spacing:.1px;margin:0 0 7px}.brief{margin:0;font-size:14px;line-height:1.85;color:#58665e}.meta{font-size:10px;color:#7d867f;margin-top:10px;display:flex;justify-content:space-between;gap:10px}.more{color:#507462;white-space:nowrap}.more::after{content:' ＋'}details[open] .more{font-size:0}details[open] .more::after{content:'收起 −';font-size:10px}.detail{padding:18px 0 0}.detail section{margin:0 0 16px;border-left:2px solid #d8e2d6;padding-left:14px}h3{font-size:12px;color:#42624d;margin:0 0 6px}.detail p{font-size:14px;line-height:1.9;margin:0}.detail small,.controls small{color:#8b938c;font-size:10px;line-height:1.6;overflow-wrap:anywhere}.detail small{display:block;margin-top:5px}.detail .original{font-size:10px;color:#8b938c;margin-bottom:8px}.controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}.controls>small{max-width:75%}.votes{display:flex;gap:5px}.votes button{font:inherit;font-size:18px;width:38px;height:36px;border:1px solid #dce3da;background:transparent;border-radius:7px;color:#7b897d;cursor:pointer}.votes button[aria-pressed=true]{background:#e4eee2;color:#245a3c;border-color:#91ad93}button:focus-visible,summary:focus-visible{outline:2px solid #6d9273;outline-offset:3px}footer{padding:20px 24px;font-size:10px;color:#8b938c;text-align:center}#status{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);max-width:calc(100% - 30px);width:max-content;background:#244032;color:#fff;font-size:12px;padding:10px 15px;border-radius:8px;pointer-events:none;box-shadow:0 3px 16px #0001;z-index:10}#status:empty{display:none}.empty{padding:30px 0;color:#7b837d;font-size:14px}@media(max-width:600px){header{padding:16px 19px 13px}main{padding:0 19px}h2{font-size:17px}article{padding-top:17px}.votes button{min-width:40px;min-height:40px}footer{padding-bottom:60px}}
-</style></head><body><header><h1>每日资讯</h1><span id="date"></span></header><main id="feed"></main><p id="status" role="status" aria-live="polite"></p><footer>↑ 更想看　↓ 少看些 · 下次更新生效</footer><script>const edition = {"date": "2026-10-25", "updated": "2026-10-25T15:07:21.172731+00:00", "status": "ok", "coverage": {"SignalBase": "当日返回3条，读取后保留1条新闻；其余为产品反馈联系人和一般AI使用观点。", "YZData": "当日查询成功，0条匹配文章。"}};
+</style></head><body><header><h1>每日资讯</h1><span id="date"></span></header><main id="feed"></main><p id="status" role="status" aria-live="polite"></p><footer>↑ 更想看　↓ 少看些 · 下次更新生效</footer><script>const edition = {"date":"2026-10-25","updated":"2026-10-25T18:28:58.362Z","status":"ok","coverage":{"SignalBase":"当日有界目录返回31条；阅读实质资料，去重及筛选。","YZData":"当日返回4篇专家资料，均已阅读。"}};
 const articles = [
+  {
+    "id": "2026-10-25-csp-roi",
+    "date": "2026-10-25",
+    "title": "字节算力调研：采购回本约两年，B300扩容受交付约束",
+    "brief": "专家称算力比上半年更紧张，火山云与MAAS商业化业务的资源优先级高于基础模型研发。",
+    "tags": [
+      "字节跳动",
+      "数据中心",
+      "云与模型"
+    ],
+    "points": [
+      [
+        "回本与资源",
+        "专家估算采购算力卡约两年回本；2026年部分约定采购、预付锁定的租赁资源，按B300单价折算约十几万张卡，包含海外资源。"
+      ],
+      [
+        "需求和交付",
+        "近期订单主要扩充B300，但交付困难。企业因预期模型用量继续增长而提前储备资源，进一步加快抢占算力。"
+      ],
+      [
+        "自研与商业化",
+        "专家称与博通的合作进度放缓，自研芯片的算子支持和用量完整性仍不足；业务考核更重视token份额、用户和工具渗透率，优先销售SeeDance等成熟产品。"
+      ]
+    ],
+    "source": "Expert AC",
+    "kind": "专家访谈",
+    "cite": "[Expert AC｜2026-10-25]",
+    "original": "头部CSP调研：未来业务展望，算力投入回本周期测算等 –"
+  },
+  {
+    "id": "2026-10-25-model-compute",
+    "date": "2026-10-25",
+    "title": "Kimi算力缺口最突出；新卡长约5年，H系列最多1年",
+    "brief": "专家称大参数模型推高先进GPU需求，MiniMax正出售旧H系列、补充B系列；智谱凭国产适配与补贴降低成本。",
+    "tags": [
+      "Kimi",
+      "MiniMax",
+      "DeepSeek",
+      "智谱",
+      "NVIDIA"
+    ],
+    "points": [
+      [
+        "租约代际差异",
+        "专家称GB系列可签五年合约，B系列最多三年，H系列最多一年；Kimi通过阿里云、金山云、海外新型云及收入分成合作获取算力。"
+      ],
+      [
+        "企业分化",
+        "Kimi的训练缺口大于推理，仍优先追求大参数强模型。MiniMax兼用多代GPU和国产卡，并探索保底采购及算力转售；智谱采购时已包含部分补贴，国产适配更深入。"
+      ],
+      [
+        "开源改变收入分配",
+        "专家认为DeepSeek开放推理优化框架，会推动API调用转向自部署或第三方托管，压低模型转售溢价；云厂商竞争转向利用率、可靠性与企业交付。"
+      ]
+    ],
+    "source": "Expert AC",
+    "kind": "专家访谈",
+    "cite": "[Expert AC｜2026-10-25]",
+    "original": "Kimi、智谱及Minimax、DeepSeek等算力紧缺度对比，国产"
+  },
+  {
+    "id": "2026-10-25-aws-memory",
+    "date": "2026-10-25",
+    "title": "Jassy访谈转述：AWS大部分2028年容量已售出，内存短缺难在2027年结束",
+    "brief": "Serenity转述Amazon CEO访谈：2027年容量基本售罄，2026年资本开支约2,200亿美元，仍有追加投资空间。",
+    "tags": [
+      "Amazon",
+      "AMZN",
+      "存储",
+      "数据中心"
+    ],
+    "points": [
+      [
+        "容量与内存",
+        "帖子转述Jassy称2027年容量基本售罄，2028年也已有很大一部分售出；他不认为内存短缺会在2027年结束。"
+      ],
+      [
+        "自研加速器",
+        "帖文称AWS自研AI加速器较同类产品有约30%–40%的性价比优势，Jassy将Annapurna列为亚马逊历史上最好的收购之一。"
+      ]
+    ],
+    "source": "X Key Voices/X account @aleabitoreddit",
+    "kind": "社交动态",
+    "cite": "[X Key Voices/X account @aleabitoreddit｜2026-10-25]",
+    "original": "@aleabitoreddit: So back on your Neoclouds like $NBIS + memory read through... From $AMZN CEO + A16z interview. Q: On memory shortages (e"
+  },
+  {
+    "id": "2026-10-25-nscale",
+    "date": "2026-10-25",
+    "title": "Nscale与Anthropic据报洽谈450亿美元算力合同",
+    "brief": "Beth Kindig称，拟议交易涉及西弗吉尼亚第二处设施的460MW Vera Rubin算力。",
+    "tags": [
+      "Nscale",
+      "Anthropic",
+      "NVIDIA",
+      "数据中心"
+    ],
+    "points": [
+      [
+        "交易范围",
+        "Beth Kindig发帖称双方正在商谈价值450亿美元的新AI算力协议，将使Anthropic获得460MW Vera Rubin容量；地点为西弗吉尼亚州的第二处设施。"
+      ]
+    ],
+    "source": "X Key Voices",
+    "kind": "社交动态",
+    "cite": "[X Key Voices｜2026-10-25]",
+    "original": "@Beth_Kindig: Data center startup Nscale and Anthropic are said to be in talks for a new AI compute deal worth $45 billion, giving Ant"
+  },
+  {
+    "id": "2026-10-25-h100-rent",
+    "date": "2026-10-25",
+    "title": "Social Capital称H100租价较12月上涨45%",
+    "brief": "即使已有两代更新GPU推出，旧卡租价仍涨；Chamath将电力不足视为关键制约。",
+    "tags": [
+      "NVIDIA",
+      "数据中心",
+      "电力设备"
+    ],
+    "points": [
+      [
+        "旧卡租赁",
+        "关联帖中Social Capital称，2022年上市的H100租赁成本较12月高45%，算力需求仍明显超出供给。"
+      ],
+      [
+        "电力约束",
+        "Chamath在主帖中将电力列为限制因素，并认为这解释了价格持续快速上涨。"
+      ]
+    ],
+    "source": "X Key Voices",
+    "kind": "社交动态",
+    "cite": "[X Key Voices｜2026-10-25]",
+    "original": "@chamath: Power is the binding constraint. This is why prices continue to climb so ferociously. https://t.co/vGvNYJ8zuo"
+  },
+  {
+    "id": "2026-10-25-meta-capex",
+    "date": "2026-10-25",
+    "title": "Meta资本开支下限再升50亿美元，全年区间1,350亿–1,450亿美元",
+    "brief": "The Transcript转述CFO：2026年资本开支包含融资租赁本金，原指引为1,300亿–1,450亿美元。",
+    "tags": [
+      "Meta Platforms",
+      "数据中心"
+    ],
+    "points": [
+      [
+        "指引变化",
+        "全年资本开支下限由1,300亿美元上调至1,350亿美元，上限维持1,450亿美元，反映AI基础设施持续扩张。"
+      ]
+    ],
+    "source": "X Key Voices/X account @TheTranscript_",
+    "kind": "社交动态",
+    "cite": "[X Key Voices/X account @TheTranscript_｜2026-10-25]",
+    "original": "@TheTranscript_: $META CFO: Full-year CapEx guidance narrowed to $135–145B, reinforcing exceptionally high investment intensity as AI inf"
+  },
+  {
+    "id": "2026-10-25-meta-users",
+    "date": "2026-10-25",
+    "title": "Meta应用日活36.4亿；CEO称Threads月活超过X",
+    "brief": "The Transcript转述：Facebook与Instagram互动创新高，视频增长是主要驱动。",
+    "tags": [
+      "Meta Platforms",
+      "软件应用"
+    ],
+    "points": [
+      [
+        "平台增长",
+        "CEO称应用家族每日使用人数达36.4亿，Facebook和Instagram互动均创新高。"
+      ],
+      [
+        "Threads与WhatsApp",
+        "CEO称Threads月活已超过X并继续快速增长；WhatsApp消息量创新高，也正成为越来越重要的智能体平台。"
+      ]
+    ],
+    "source": "X Key Voices/X account @TheTranscript_",
+    "kind": "社交动态",
+    "cite": "[X Key Voices/X account @TheTranscript_｜2026-10-25]",
+    "original": "@TheTranscript_: $META CEO: \"\"Our Family of Apps is now used by 3.64 billion people each day, and we are seeing all-time highs in engagem"
+  },
+  {
+    "id": "2026-10-25-torchneuron",
+    "date": "2026-10-25",
+    "title": "Amazon拟用TorchNeuron让Trainium直接运行PyTorch代码",
+    "brief": "Beth Kindig称该工具预期免费、开源，用户无需修改已有PyTorch代码。",
+    "tags": [
+      "Amazon",
+      "AMZN",
+      "芯片与材料"
+    ],
+    "points": [
+      [
+        "迁移工具",
+        "帖文称Amazon正推出TorchNeuron，使Trainium能够不经代码修改直接运行PyTorch程序，计划作为免费开源工具提供。"
+      ]
+    ],
+    "source": "X Key Voices",
+    "kind": "社交动态",
+    "cite": "[X Key Voices｜2026-10-25]",
+    "original": "@Beth_Kindig: Amazon $AMZN is introducing its new TorchNeuron tool that will allow its Trainium chips to run code written on PyTorch w"
+  },
+  {
+    "id": "2026-10-25-nvhbm",
+    "date": "2026-10-25",
+    "title": "三星据报考虑台积电3nm制造NVHBM底层芯片",
+    "brief": "Beth Kindig称，三星亦在评估内部代工厂能否承担NVIDIA下一代定制NVHBM的制造。",
+    "tags": [
+      "Samsung Electronics",
+      "TSMC",
+      "NVIDIA",
+      "存储"
+    ],
+    "points": [
+      [
+        "制造路径",
+        "帖文称三星将使用台积电3nm节点制造下一代定制NVHBM的base die，同时评估内部代工能力。"
+      ]
+    ],
+    "source": "X Key Voices",
+    "kind": "社交动态",
+    "cite": "[X Key Voices｜2026-10-25]",
+    "original": "@Beth_Kindig: Samsung will reportedly use TSMC’s $TSM 3nm node for base dies for Nvidia’s $NVDA next-gen custom NVHBM chips, though Sa"
+  },
+  {
+    "id": "2026-10-25-lasers",
+    "date": "2026-10-25",
+    "title": "激光器扩产有时滞：索尔思2027年目标3亿颗，多项CW产能要到2029年",
+    "brief": "Serenity汇总公开披露与渠道调研，认为70/100mW激光器仍紧张，2028年后才可能逐步缓解。",
+    "tags": [
+      "光通信",
+      "Lumentum",
+      "Coherent",
+      "中际旭创"
+    ],
+    "points": [
+      [
+        "扩产节点",
+        "帖文汇总：索尔思月产能由900万颗向Q4的2,200万颗提升，2027年目标年产3亿颗，产品混合且主要为EML；仕佳100mW CW项目年产7,200万颗、云岭70/100mW CW项目年产1,875万颗，主要在2029年完全投产。"
+      ],
+      [
+        "锁定上游",
+        "帖文引用中际旭创9月披露，称其正引入新供应商、计划通过2–3年长期合约锁定激光器产能，用于保障1.6T可插拔产品。"
+      ],
+      [
+        "高端与低端差异",
+        "作者认为可插拔所用激光器瓶颈可能在2028年逐步缓解；并转述AAOI管理层称中国供应商在高功率CPO/DWDM生产上仍落后数年。"
+      ]
+    ],
+    "source": "X Key Voices/X account @aleabitoreddit",
+    "kind": "社交动态",
+    "cite": "[X Key Voices/X account @aleabitoreddit｜2026-10-25]",
+    "original": "@aleabitoreddit: I guess what I've seen from Chinese laser capacity expansion: 1. Dongshan/Source Photonics (索尔思): 9M/month capacity -> 2"
+  },
+  {
+    "id": "2026-10-25-iphone-duo",
+    "date": "2026-10-25",
+    "title": "iPhone Duo专家：备货扩张目标约1,200万部，良率仍制约放量",
+    "brief": "专家称初代由富士康独家组装，量产初期整机良率仅略高于60%；第二代可能引入新代工商。",
+    "tags": [
+      "Apple",
+      "AAPL",
+      "富士康",
+      "消费电子"
+    ],
+    "points": [
+      [
+        "扩产与良率",
+        "专家称供应链扩张目标由约600万部升至约1,200万部，订单分批下达；全新折叠结构、部件匹配和铰链装配使初期良率偏低。"
+      ],
+      [
+        "供应链分工",
+        "专家称首批内屏由三星独供，蓝思科技和伯恩光学供应UTG；德赛电池与欣旺达负责电池PACK，富士康和安费诺承担铰链组装。"
+      ],
+      [
+        "第二代节点",
+        "专家预计2026年11–12月收到第二代设计图纸，苹果可能引入第二家代工商，以缓解首代的产能与良率约束。"
+      ]
+    ],
+    "source": "Expert AC",
+    "kind": "专家访谈",
+    "cite": "[Expert AC｜2026-10-25]",
+    "original": "代工大厂专家谈苹果iPhone Duo加单及良率情况"
+  },
+  {
+    "id": "2026-10-25-disco",
+    "date": "2026-10-25",
+    "title": "Disco高端研磨机组装工时接近减半，HBM与先进封装需求仍强",
+    "brief": "Citi称7–9月出货创新高；组装工时由两年前约4,000小时降至接近2,000小时，下一目标1,000小时。",
+    "tags": [
+      "Disco",
+      "半导体设备",
+      "HBM"
+    ],
+    "points": [
+      [
+        "需求扩散",
+        "管理层称AI需求从核心工序向周边零部件和工序扩散，HBM及AI逻辑需求强，全球封测厂增加先进封装投资，光电融合进入量产阶段。"
+      ],
+      [
+        "有效扩产",
+        "高端研磨机组装工时由约4,000小时降至2026年4月约3,000小时，10月接近2,000小时；公司计划在现有100人生产支援团队基础上再增加100人。"
+      ],
+      [
+        "机构判断与时间点",
+        "Citi认为股价已大致反映担忧，目标价73,000日元；下一技术说明会定于12月22日。"
+      ]
+    ],
+    "source": "Citi",
+    "kind": "机构研究",
+    "cite": "[Citi｜2026-10-25]",
+    "original": "Disco (6146.T) Takeaways from post-results call with management (October 2026)"
+  },
+  {
+    "id": "2026-10-25-diamond",
+    "date": "2026-10-25",
+    "title": "金刚石热沉产线投资约1,500万–2,500万元，激光设备占40%",
+    "brief": "专家称AI芯片散热是主要增量场景，国产皮秒激光已较成熟，飞秒设备单价可达500万–800万元。",
+    "tags": [
+      "芯片与材料",
+      "散热",
+      "激光设备"
+    ],
+    "points": [
+      [
+        "加工价值量",
+        "专家估计后段产线总设备投资1,500万–2,500万元，激光加工约占40%；切割、开槽、抛光等单项设备普遍150万–300万元。"
+      ],
+      [
+        "路线与供应商",
+        "紫外及红外皮秒是当前主流，国产代表厂商包括英诺激光、贝林激光。飞秒设备更适合高精度加工，单台500万–800万元，国产化率较低。"
+      ],
+      [
+        "需求测算",
+        "专家给出条件情景：若2028年AI服务器出货500万台、10%采用金刚石热沉，对应250万–1,000万片需求；工艺也可向TGV与碳化硅加工延伸。"
+      ]
+    ],
+    "source": "Expert AC",
+    "kind": "专家访谈",
+    "cite": "[Expert AC｜2026-10-25]",
+    "original": "金刚石热沉片激光加工分析—应用场景、超快激光应用及设备投资额"
+  },
+  {
+    "id": "2026-10-25-model-discounts",
+    "date": "2026-10-25",
+    "title": "OpenAI更积极给折扣和免费额度，部分客户从Anthropic转用",
+    "brief": "Stephanie Palazzolo称，Anthropic谈判姿态较强硬，OpenAI的优惠近月已促成客户迁移。",
+    "tags": [
+      "OpenAI",
+      "Anthropic",
+      "云与模型"
+    ],
+    "points": [
+      [
+        "价格竞争",
+        "记者发帖称，OpenAI在折扣和免费额度方面更宽松，已说服若干客户转用；Anthropic在商务谈判中较为强硬。"
+      ]
+    ],
+    "source": "X Key Voices",
+    "kind": "社交动态",
+    "cite": "[X Key Voices｜2026-10-25]",
+    "original": "@steph_palazzolo: While Anthropic has been playing hardball while negotiating, OpenAI has been much more lenient in giving out discounts a"
+  },
+  {
+    "id": "2026-10-25-china-tools",
+    "date": "2026-10-25",
+    "title": "SemiAnalysis：中国设备商与晶圆厂开始协同开发设备及EDA",
+    "brief": "其观点是国产化从政府主导转向厂商与晶圆厂共同推进，出口管制反而强化研发动力。",
+    "tags": [
+      "半导体设备",
+      "EDA",
+      "芯片与材料"
+    ],
+    "points": [
+      [
+        "协作方式改变",
+        "SemiAnalysis称从今年开始，设备商与晶圆厂协同从底层设计制造设备及EDA，以适应中国特有的工艺约束。"
+      ],
+      [
+        "对出口管制的判断",
+        "SemiAnalysis认为这一进程不会被出口管制阻断；过去数年的设备本土化经验表明，限制可能进一步加速国产化投入。"
+      ]
+    ],
+    "source": "X Key Voices/SemiAnalysis",
+    "kind": "社交动态",
+    "cite": "[X Key Voices/SemiAnalysis｜2026-10-25]",
+    "original": "@SemiAnalysis_: Export controls are only speeding up China’s chip self-sufficiency. “Starting this year, China’s self-sufficiency push h"
+  },
+  {
+    "id": "2026-10-25-grok",
+    "date": "2026-10-25",
+    "title": "Grok bot付费周用户达80万，单月翻倍以上",
+    "brief": "The Transcript转述管理层：产品8月推出，B2B是增长最快类别，覆盖销售、营销、IT与工程。",
+    "tags": [
+      "Grok",
+      "软件应用",
+      "企业 AI"
+    ],
+    "points": [
+      [
+        "使用规模",
+        "帖文转述运营负责人称，8月推出的Grok bot在10月初已有80万付费周用户，较前一个月增长超过一倍。"
+      ],
+      [
+        "企业应用",
+        "B2B增长最快，企业将其用于复杂端到端工作流，涵盖销售、营销、IT和工程。"
+      ]
+    ],
+    "source": "X Key Voices/X account @TheTranscript_",
+    "kind": "社交动态",
+    "cite": "[X Key Voices/X account @TheTranscript_｜2026-10-25]",
+    "original": "@TheTranscript_: $SPCX COO: \"Grok bot, our Agentic Assistant, launched in August, and we already had paid weekly users of 800,000 earlier"
+  },
+  {
+    "id": "2026-10-25-meitu",
+    "date": "2026-10-25",
+    "title": "美图生产力收入增速升至42%，付费用户却环比持平",
+    "brief": "Morgan Stanley称Q3影像设计收入10亿元、同比+28%，增速从Q1的37%、Q2的30%继续放缓。",
+    "tags": [
+      "美图",
+      "软件应用",
+      "企业 AI"
+    ],
+    "points": [
+      [
+        "增长结构",
+        "休闲收入8亿元、同比+28%；生产力收入2亿元、同比+42%，快于Q2的36%。休闲增长由付费人数推动，生产力主要依赖ARPPU。"
+      ],
+      [
+        "付费与ARR",
+        "总付费用户1,980万、同比+23%、环比+8%，其中生产力240万、环比持平；AI生产力应用ARR为6.55亿元、同比+40%。"
+      ]
+    ],
+    "source": "Morgan Stanley",
+    "kind": "机构研究",
+    "cite": "[Morgan Stanley｜2026-10-25]",
+    "original": "Meitu Inc  | Asia Pacific 3Q26 Operating Data: Growth Drivers Diverged"
+  },
+  {
+    "id": "2026-10-25-eve",
+    "date": "2026-10-25",
+    "title": "亿纬锂能预计2027年动力电池出货翻倍，储能增逾50%",
+    "brief": "J.P. Morgan称Q3净利润19.4亿元、同比+60%；BMW需求超预期，2027年大圆柱出货预计超过2026年的三倍。",
+    "tags": [
+      "亿纬锂能",
+      "储能",
+      "Fluence"
+    ],
+    "points": [
+      [
+        "2027年订单",
+        "管理层预计动力电池出货约翻倍、储能增长超过50%；国内商用车电池目标80–90GWh，接近三倍增长。大圆柱2026年约10GWh，2027年预计超过三倍。"
+      ],
+      [
+        "海外储能",
+        "海外储能预计占储能出货至少40%；2027年已锁定Fluence约16GWh交付。匈牙利工厂计划2027年下半年量产。"
+      ],
+      [
+        "利润与评级",
+        "Q3总出货53GWh、环比+16%，Q4排产再增15%–20%；多数客户同意承担或分摊消费税与出口退税减少成本。J.P. Morgan仍维持减持、目标价33元，担心利润率压力。"
+      ]
+    ],
+    "source": "J.P. Morgan",
+    "kind": "机构研究",
+    "cite": "[J.P. Morgan｜2026-10-25]",
+    "original": "EVE Energy: 3Q sees stable unit economics; mgmt guides to strong 2027 shipment growth"
+  },
+  {
+    "id": "2026-10-25-infosys",
+    "date": "2026-10-25",
+    "title": "Infosys收入和利润率低于预期，UBS下调目标价至1,415卢比",
+    "brief": "Q2固定汇率收入环比+1.2%，低于报告所列市场预期1.8%；全年增长指引中点下调75个基点。",
+    "tags": [
+      "Infosys",
+      "IT服务",
+      "软件应用"
+    ],
+    "points": [
+      [
+        "业绩预期差",
+        "EBIT利润率21.0%，低于市场预期21.2%；EPS 19.3卢比，低于预期19.7卢比。全年收入增长指引从1.5%–3%降至1%–2%，利润率指引维持20%–22%。"
+      ],
+      [
+        "AI与订单",
+        "AI收入占比由8.2%升至10.5%，环比增长29%；大单TCV为52亿美元、62%为净新增。管理层认为20亿美元新大单将帮助FY28恢复增长。"
+      ],
+      [
+        "机构调整",
+        "UBS将FY27–29 EPS预测下调1%–3%，目标价从1,430降至1,415卢比，维持买入；报告称可选支出疲弱和竞争压力超过此前预期。"
+      ]
+    ],
+    "source": "UBS",
+    "kind": "机构研究",
+    "cite": "[UBS｜2026-10-25]",
+    "original": "First Read: Infosys"
+  },
+  {
+    "id": "2026-10-25-shenhua",
+    "date": "2026-10-25",
+    "title": "中国神华Q3利润增约3%，电力板块毛利下降55%",
+    "brief": "Citi称Q3净利润163亿元、略低于其预期；煤炭单位毛利改善，但电力成本上升。",
+    "tags": [
+      "中国神华",
+      "能源"
+    ],
+    "points": [
+      [
+        "分部变化",
+        "自产煤均价417元/吨、同比+10%，单位毛利185元/吨、增长32%；电力单位成本同比+24%，电力毛利降55%至30亿元。"
+      ],
+      [
+        "现金流与估值",
+        "Q3经营现金流380亿元、同比+60%；资本开支176亿元、同比+117%，自由现金流约200亿元、同比+30%。Citi维持买入，H股目标价54.70港元。"
+      ]
+    ],
+    "source": "Citi",
+    "kind": "机构研究",
+    "cite": "[Citi｜2026-10-25]",
+    "original": "China Shenhua Energy (1088.HK) 3Q26 NI Up 3% YoY, Maintain Buy"
+  },
+  {
+    "id": "2026-10-25-china-fiscal",
+    "date": "2026-10-25",
+    "title": "GS下调中国全年广义财政赤字预测：11.5%降至10%",
+    "brief": "前三季度合并财政收入增长1.4%、支出下降3.5%；Q3 GDP增长4.5%，略高于市场预期4.4%。",
+    "tags": [
+      "宏观市场",
+      "中国经济"
+    ],
+    "points": [
+      [
+        "财政收紧",
+        "GS测算12个月滚动广义财政赤字从2025年12月GDP的11%降至2026年9月的9.4%。虽预计Q4放松，但全年预测仍从11.5%下调至10%。"
+      ],
+      [
+        "政策利率转换",
+        "GS预计央行明年可能将政策利率由7天逆回购转为隔夜逆回购，对应当前1.4%与1.25%的利率差，可能形成15个基点的有效下降。"
+      ]
+    ],
+    "source": "Goldman Sachs",
+    "kind": "机构研究",
+    "cite": "[Goldman Sachs｜2026-10-25]",
+    "original": "China: Three things in China"
+  },
+  {
+    "id": "2026-10-25-china-property",
+    "date": "2026-10-25",
+    "title": "GS将房地产对2026年GDP拖累从1.5升至1.8个百分点",
+    "brief": "预计2027年拖累降至1.3个百分点；现房销售转型收紧开发商现金流，地产投资下滑更深、更久。",
+    "tags": [
+      "宏观市场",
+      "房地产"
+    ],
+    "points": [
+      [
+        "预测下修",
+        "GS预计地产占实际GDP比重从当前约15%降至2030年后的约8%；2027年土地收入、新开工、新房销售、地产投资分别再降20%、20%、10%、17%。"
+      ],
+      [
+        "计算方式",
+        "模型汇总建筑、地产服务、上游商品需求、入住消费及卖地财政五条直接渠道。另以房产价值变化乘约1%的消费财富效应系数，估算间接影响。"
+      ],
+      [
+        "地区分化",
+        "GS认为上海、深圳等低库存城市房价可能较早恢复，低线城市仍可能连跌数年；住宅土地销售量2025–2035年预测下降超过90%，地方财政压力延续。"
+      ]
+    ],
+    "source": "Goldman Sachs",
+    "kind": "机构研究",
+    "cite": "[Goldman Sachs｜2026-10-25]",
+    "original": "China: Property Downturn Deeper Than Previously Anticipated, But Its Growth Drag Should Still Ease Gradually in the Years Ahead"
+  },
   {
     "id": "2026-10-25-cls-oil",
     "date": "2026-10-25",
@@ -32,11 +600,11 @@ root.ResearchRanking={score,order};if(typeof module!=='undefined')module.exports
 </script><script>const key='wendy-research-preferences-v1';let state={votes:{},orders:{}};let persistent=true;try{state=JSON.parse(localStorage.getItem(key))||state;}catch(e){persistent=false;}state.votes ||= {};state.orders ||= {};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const feed=document.querySelector('#feed'),status=document.querySelector('#status');
 function save(){try{localStorage.setItem(key,JSON.stringify(state));return true;}catch(e){persistent=false;return false;}}
-const dayItems=articles.filter(a=>a.date===edition.date);const ids=ResearchRanking.order(dayItems,state.votes,edition.date,state.orders[edition.date]);state.orders[edition.date]=ids;save();
+const dayItems=articles.filter(a=>a.date<=edition.date);const ids=ResearchRanking.order(dayItems,state.votes,edition.date,state.orders[edition.date]);state.orders[edition.date]=ids;save();
 // Keep recent frozen editions only; votes retain their dates for gradual decay.
 for(const day of Object.keys(state.orders).sort().slice(0,-14))delete state.orders[day];
 document.querySelector('#date').textContent=edition.date+' · '+dayItems.length+' 条';
-feed.innerHTML=ids.map(id=>{const a=dayItems.find(x=>x.id===id);return `<article data-id="${esc(id)}"><details><summary><h2>${esc(a.title)}</h2><p class="brief">${esc(a.brief)}</p><div class="meta">${esc(a.source)} · ${esc(a.kind)}<span class="more">展开关键点</span></div></summary><div class="detail">${a.points.map(p=>`<section><h3>${esc(p[0])}</h3><p>${esc(p[1])}</p><small>${esc(a.cite)}</small></section>`).join('')}<p class="original">${esc(a.original)}</p></div></details><div class="controls"><small>${esc(a.cite)}</small><div class="votes" aria-label="调整未来排序"><button data-value="1" aria-label="提高此类内容未来排序" title="更想看此类内容">↑</button><button data-value="-1" aria-label="降低此类内容未来排序" title="减少此类内容">↓</button></div></div></article>`}).join('');
+feed.innerHTML=ids.map(id=>{const a=dayItems.find(x=>x.id===id);return `<article data-id="${esc(id)}"><details><summary><h2>${esc(a.title)}</h2><p class="brief">${esc(a.brief)}</p><div class="meta">${esc(a.date)} · ${esc(a.source)} · ${esc(a.kind)}<span class="more">展开关键点</span></div></summary><div class="detail">${a.points.map(p=>`<section><h3>${esc(p[0])}</h3><p>${esc(p[1])}</p><small>${esc(a.cite)}</small></section>`).join('')}<p class="original">${esc(a.original)}</p></div></details><div class="controls"><small>${esc(a.cite)}</small><div class="votes" aria-label="调整未来排序"><button data-value="1" aria-label="提高此类内容未来排序" title="更想看此类内容">↑</button><button data-value="-1" aria-label="降低此类内容未来排序" title="减少此类内容">↓</button></div></div></article>`}).join('');
 if(!dayItems.length)feed.innerHTML='<p class="empty">'+esc(edition.status==='error'?'今日资料暂时无法更新，稍后重试。':'今日暂无新文章。')+'</p>';
 function paint(article){const vote=state.votes[article.dataset.id]?.value;article.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',vote===Number(b.dataset.value)));}
 feed.querySelectorAll('article').forEach(el=>{paint(el);el.querySelectorAll('button').forEach(b=>b.onclick=()=>{const a=dayItems.find(x=>x.id===el.dataset.id),value=Number(b.dataset.value);const previous=state.votes[a.id]?.value;if(previous===value)delete state.votes[a.id];else state.votes[a.id]={value,tags:a.tags,date:edition.date};const stored=save();paint(el);status.textContent=stored?(previous===value?'已取消反馈':'已记下，下次更新调整；今日顺序不变'):'浏览器未允许保存，偏好仅在本次打开期间有效';});});
