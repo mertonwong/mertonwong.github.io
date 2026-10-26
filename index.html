@@ -1,5 +1,7 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f8f8f5"><title>每日资讯</title><style>*{box-sizing:border-box}body{margin:0;background:#f8f8f5;color:#25332d;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}header,main,footer{max-width:740px;margin:auto}header{display:flex;align-items:center;justify-content:space-between;padding:19px 24px 15px;border-bottom:1px solid #dfe4dc}h1{font-size:17px;margin:0;font-weight:650}header span{font-size:11px;color:#7b837d}main{padding:0 24px}article{padding:18px 0 15px;border-bottom:1px solid #dfe4dc}summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}h2{font-size:18px;font-weight:600;line-height:1.65;letter-spacing:.1px;margin:0 0 7px}.brief{margin:0;font-size:14px;line-height:1.85;color:#58665e}.meta{font-size:10px;color:#7d867f;margin-top:10px;display:flex;justify-content:space-between;gap:10px}.more{color:#507462;white-space:nowrap}.more::after{content:' ＋'}details[open] .more{font-size:0}details[open] .more::after{content:'收起 −';font-size:10px}.detail{padding:18px 0 0}.detail section{margin:0 0 16px;border-left:2px solid #d8e2d6;padding-left:14px}h3{font-size:12px;color:#42624d;margin:0 0 6px}.detail p{font-size:14px;line-height:1.9;margin:0}.detail small,.controls small{color:#8b938c;font-size:10px;line-height:1.6;overflow-wrap:anywhere}.detail small{display:block;margin-top:5px}.detail .original{font-size:10px;color:#8b938c;margin-bottom:8px}.controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}.controls>small{max-width:75%}.votes{display:flex;gap:5px}.votes button{font:inherit;font-size:18px;width:38px;height:36px;border:1px solid #dce3da;background:transparent;border-radius:7px;color:#7b897d;cursor:pointer}.votes button[aria-pressed=true]{background:#e4eee2;color:#245a3c;border-color:#91ad93}button:focus-visible,summary:focus-visible{outline:2px solid #6d9273;outline-offset:3px}footer{padding:20px 24px;font-size:10px;color:#8b938c;text-align:center}#status{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);max-width:calc(100% - 30px);width:max-content;background:#244032;color:#fff;font-size:12px;padding:10px 15px;border-radius:8px;pointer-events:none;box-shadow:0 3px 16px #0001;z-index:10}#status:empty{display:none}.empty{padding:30px 0;color:#7b837d;font-size:14px}@media(max-width:600px){header{padding:16px 19px 13px}main{padding:0 19px}h2{font-size:17px}article{padding-top:17px}.votes button{min-width:40px;min-height:40px}footer{padding-bottom:60px}}
 .header-stats{display:flex;flex-direction:column;align-items:flex-end;gap:3px;text-align:right}.header-stats #source-counts{max-width:55vw;line-height:1.4;color:#607468}@media(max-width:600px){header{align-items:flex-start}.header-stats #source-counts{max-width:64vw;font-size:10px}}
+
+.kind-expert{color:#7252a2;background:#f0eafb;border-radius:4px;padding:2px 5px;font-weight:600}
 </style></head><body><header><h1>每日资讯</h1><div class="header-stats"><span id="date"></span><span id="source-counts"></span></div></header><main id="feed"></main><p id="status" role="status" aria-live="polite"></p><footer>↑ 更想看　↓ 少看些 · 下次更新生效</footer><script>const edition = {"date":"2026-10-25","updated":"2026-10-26T00:11:56.565Z","status":"ok","coverage":{"SignalBase":"当日目录分页读取31篇，接口总量区间20+，两页无后续。","YZData":"当日目录4篇，接口总量区间<10，无后续。"},"counts":{"SignalBase":{"retrieved":31,"reported":"20+","complete":true},"YZData":{"retrieved":4,"reported":"<10","complete":true}}};
 const articles = [
   {
@@ -29,7 +31,8 @@ const articles = [
     "source": "Expert AC",
     "kind": "专家访谈",
     "cite": "[Expert AC｜2026-10-25]",
-    "original": "头部CSP调研：未来业务展望，算力投入回本周期测算等 –"
+    "original": "头部CSP调研：未来业务展望，算力投入回本周期测算等 –",
+    "library": "YZData"
   },
   {
     "id": "2026-10-25-model-compute",
@@ -60,7 +63,8 @@ const articles = [
     "source": "Expert AC",
     "kind": "专家访谈",
     "cite": "[Expert AC｜2026-10-25]",
-    "original": "Kimi、智谱及Minimax、DeepSeek等算力紧缺度对比，国产"
+    "original": "Kimi、智谱及Minimax、DeepSeek等算力紧缺度对比，国产",
+    "library": "YZData"
   },
   {
     "id": "2026-10-25-aws-memory",
@@ -86,7 +90,8 @@ const articles = [
     "source": "X Key Voices/X account @aleabitoreddit",
     "kind": "社交动态",
     "cite": "[X Key Voices/X account @aleabitoreddit｜2026-10-25]",
-    "original": "@aleabitoreddit: So back on your Neoclouds like $NBIS + memory read through... From $AMZN CEO + A16z interview. Q: On memory shortages (e"
+    "original": "@aleabitoreddit: So back on your Neoclouds like $NBIS + memory read through... From $AMZN CEO + A16z interview. Q: On memory shortages (e",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-nscale",
@@ -108,7 +113,8 @@ const articles = [
     "source": "X Key Voices",
     "kind": "社交动态",
     "cite": "[X Key Voices｜2026-10-25]",
-    "original": "@Beth_Kindig: Data center startup Nscale and Anthropic are said to be in talks for a new AI compute deal worth $45 billion, giving Ant"
+    "original": "@Beth_Kindig: Data center startup Nscale and Anthropic are said to be in talks for a new AI compute deal worth $45 billion, giving Ant",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-h100-rent",
@@ -133,7 +139,8 @@ const articles = [
     "source": "X Key Voices",
     "kind": "社交动态",
     "cite": "[X Key Voices｜2026-10-25]",
-    "original": "@chamath: Power is the binding constraint. This is why prices continue to climb so ferociously. https://t.co/vGvNYJ8zuo"
+    "original": "@chamath: Power is the binding constraint. This is why prices continue to climb so ferociously. https://t.co/vGvNYJ8zuo",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-meta-capex",
@@ -153,7 +160,8 @@ const articles = [
     "source": "X Key Voices/X account @TheTranscript_",
     "kind": "社交动态",
     "cite": "[X Key Voices/X account @TheTranscript_｜2026-10-25]",
-    "original": "@TheTranscript_: $META CFO: Full-year CapEx guidance narrowed to $135–145B, reinforcing exceptionally high investment intensity as AI inf"
+    "original": "@TheTranscript_: $META CFO: Full-year CapEx guidance narrowed to $135–145B, reinforcing exceptionally high investment intensity as AI inf",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-meta-users",
@@ -177,7 +185,8 @@ const articles = [
     "source": "X Key Voices/X account @TheTranscript_",
     "kind": "社交动态",
     "cite": "[X Key Voices/X account @TheTranscript_｜2026-10-25]",
-    "original": "@TheTranscript_: $META CEO: \"\"Our Family of Apps is now used by 3.64 billion people each day, and we are seeing all-time highs in engagem"
+    "original": "@TheTranscript_: $META CEO: \"\"Our Family of Apps is now used by 3.64 billion people each day, and we are seeing all-time highs in engagem",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-torchneuron",
@@ -198,7 +207,8 @@ const articles = [
     "source": "X Key Voices",
     "kind": "社交动态",
     "cite": "[X Key Voices｜2026-10-25]",
-    "original": "@Beth_Kindig: Amazon $AMZN is introducing its new TorchNeuron tool that will allow its Trainium chips to run code written on PyTorch w"
+    "original": "@Beth_Kindig: Amazon $AMZN is introducing its new TorchNeuron tool that will allow its Trainium chips to run code written on PyTorch w",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-nvhbm",
@@ -220,7 +230,8 @@ const articles = [
     "source": "X Key Voices",
     "kind": "社交动态",
     "cite": "[X Key Voices｜2026-10-25]",
-    "original": "@Beth_Kindig: Samsung will reportedly use TSMC’s $TSM 3nm node for base dies for Nvidia’s $NVDA next-gen custom NVHBM chips, though Sa"
+    "original": "@Beth_Kindig: Samsung will reportedly use TSMC’s $TSM 3nm node for base dies for Nvidia’s $NVDA next-gen custom NVHBM chips, though Sa",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-lasers",
@@ -250,7 +261,8 @@ const articles = [
     "source": "X Key Voices/X account @aleabitoreddit",
     "kind": "社交动态",
     "cite": "[X Key Voices/X account @aleabitoreddit｜2026-10-25]",
-    "original": "@aleabitoreddit: I guess what I've seen from Chinese laser capacity expansion: 1. Dongshan/Source Photonics (索尔思): 9M/month capacity -> 2"
+    "original": "@aleabitoreddit: I guess what I've seen from Chinese laser capacity expansion: 1. Dongshan/Source Photonics (索尔思): 9M/month capacity -> 2",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-iphone-duo",
@@ -280,7 +292,8 @@ const articles = [
     "source": "Expert AC",
     "kind": "专家访谈",
     "cite": "[Expert AC｜2026-10-25]",
-    "original": "代工大厂专家谈苹果iPhone Duo加单及良率情况"
+    "original": "代工大厂专家谈苹果iPhone Duo加单及良率情况",
+    "library": "YZData"
   },
   {
     "id": "2026-10-25-disco",
@@ -309,7 +322,8 @@ const articles = [
     "source": "Citi",
     "kind": "机构研究",
     "cite": "[Citi｜2026-10-25]",
-    "original": "Disco (6146.T) Takeaways from post-results call with management (October 2026)"
+    "original": "Disco (6146.T) Takeaways from post-results call with management (October 2026)",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-diamond",
@@ -338,7 +352,8 @@ const articles = [
     "source": "Expert AC",
     "kind": "专家访谈",
     "cite": "[Expert AC｜2026-10-25]",
-    "original": "金刚石热沉片激光加工分析—应用场景、超快激光应用及设备投资额"
+    "original": "金刚石热沉片激光加工分析—应用场景、超快激光应用及设备投资额",
+    "library": "YZData"
   },
   {
     "id": "2026-10-25-model-discounts",
@@ -359,7 +374,8 @@ const articles = [
     "source": "X Key Voices",
     "kind": "社交动态",
     "cite": "[X Key Voices｜2026-10-25]",
-    "original": "@steph_palazzolo: While Anthropic has been playing hardball while negotiating, OpenAI has been much more lenient in giving out discounts a"
+    "original": "@steph_palazzolo: While Anthropic has been playing hardball while negotiating, OpenAI has been much more lenient in giving out discounts a",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-china-tools",
@@ -384,7 +400,8 @@ const articles = [
     "source": "X Key Voices/SemiAnalysis",
     "kind": "社交动态",
     "cite": "[X Key Voices/SemiAnalysis｜2026-10-25]",
-    "original": "@SemiAnalysis_: Export controls are only speeding up China’s chip self-sufficiency. “Starting this year, China’s self-sufficiency push h"
+    "original": "@SemiAnalysis_: Export controls are only speeding up China’s chip self-sufficiency. “Starting this year, China’s self-sufficiency push h",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-grok",
@@ -409,7 +426,8 @@ const articles = [
     "source": "X Key Voices/X account @TheTranscript_",
     "kind": "社交动态",
     "cite": "[X Key Voices/X account @TheTranscript_｜2026-10-25]",
-    "original": "@TheTranscript_: $SPCX COO: \"Grok bot, our Agentic Assistant, launched in August, and we already had paid weekly users of 800,000 earlier"
+    "original": "@TheTranscript_: $SPCX COO: \"Grok bot, our Agentic Assistant, launched in August, and we already had paid weekly users of 800,000 earlier",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-meitu",
@@ -434,7 +452,8 @@ const articles = [
     "source": "Morgan Stanley",
     "kind": "机构研究",
     "cite": "[Morgan Stanley｜2026-10-25]",
-    "original": "Meitu Inc  | Asia Pacific 3Q26 Operating Data: Growth Drivers Diverged"
+    "original": "Meitu Inc  | Asia Pacific 3Q26 Operating Data: Growth Drivers Diverged",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-eve",
@@ -463,7 +482,8 @@ const articles = [
     "source": "J.P. Morgan",
     "kind": "机构研究",
     "cite": "[J.P. Morgan｜2026-10-25]",
-    "original": "EVE Energy: 3Q sees stable unit economics; mgmt guides to strong 2027 shipment growth"
+    "original": "EVE Energy: 3Q sees stable unit economics; mgmt guides to strong 2027 shipment growth",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-infosys",
@@ -492,7 +512,8 @@ const articles = [
     "source": "UBS",
     "kind": "机构研究",
     "cite": "[UBS｜2026-10-25]",
-    "original": "First Read: Infosys"
+    "original": "First Read: Infosys",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-shenhua",
@@ -516,7 +537,8 @@ const articles = [
     "source": "Citi",
     "kind": "机构研究",
     "cite": "[Citi｜2026-10-25]",
-    "original": "China Shenhua Energy (1088.HK) 3Q26 NI Up 3% YoY, Maintain Buy"
+    "original": "China Shenhua Energy (1088.HK) 3Q26 NI Up 3% YoY, Maintain Buy",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-china-fiscal",
@@ -540,7 +562,8 @@ const articles = [
     "source": "Goldman Sachs",
     "kind": "机构研究",
     "cite": "[Goldman Sachs｜2026-10-25]",
-    "original": "China: Three things in China"
+    "original": "China: Three things in China",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-china-property",
@@ -568,7 +591,8 @@ const articles = [
     "source": "Goldman Sachs",
     "kind": "机构研究",
     "cite": "[Goldman Sachs｜2026-10-25]",
-    "original": "China: Property Downturn Deeper Than Previously Anticipated, But Its Growth Drag Should Still Ease Gradually in the Years Ahead"
+    "original": "China: Property Downturn Deeper Than Previously Anticipated, But Its Growth Drag Should Still Ease Gradually in the Years Ahead",
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-cls-oil",
@@ -589,7 +613,8 @@ const articles = [
         "最新表态",
         "特朗普称油价很快会下跌。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-neolab-rent",
@@ -614,7 +639,8 @@ const articles = [
         "GPU租赁",
         "关联帖转述一位新型实验室人士：即便模型训练未胜出，早期锁定的GPU产能可转租；其称H100/B200/B300租价已涨2–3倍。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-ai-cyber",
@@ -638,7 +664,8 @@ const articles = [
         "算力预期",
         "他推测未来此类智能体的token流量可能达到今天的约1,000倍。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-ai-guidance",
@@ -658,7 +685,8 @@ const articles = [
         "用法观点",
         "Guillermo Rauch称，有时AI比用户更了解解法，过度指导会限制它；指导不足又可能遗漏背景或偏离任务。他把掌握引导尺度列为招聘时看重的能力。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-ai-payoff-debate",
@@ -678,7 +706,8 @@ const articles = [
         "争论双方",
         "Ben Bajarin发帖称“科技业外企业AI投资没有财务回报”的判断不实，并表示有研究数据支持反驳；该帖没有列出具体数据。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-openai-training-isolation",
@@ -698,7 +727,8 @@ const articles = [
         "隔离措施",
         "关联记者帖称OpenAI已在最强模型训练阶段切断互联网访问，原因涉及此前系统侵入其他公司，包括Hugging Face。Patrick Moorhead认为限制智能体访问合乎常理。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-starlink-bolivia",
@@ -719,7 +749,8 @@ const articles = [
         "服务扩展",
         "Elon Musk发帖宣布Starlink进入玻利维亚。关联帖转述该国总统称，将向全国学校部署4,700套天线，以扩大偏远地区连接。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-anthropic-feedback",
@@ -740,7 +771,8 @@ const articles = [
         "反馈渠道",
         "Alex Albert列出Claude Code、Chat/Cowork、Duet、API/Platform及社区团队成员的账号，称用户可按对应产品反馈问题。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-agent-loop",
@@ -761,7 +793,8 @@ const articles = [
         "架构比较",
         "关联帖称Anthropic近期建议部分企业减少Subagent；某客户改为单一主循环加Skills后，运行速度约翻倍。原帖作者Chamath将智能体群组的信息遗漏与人类协作类比。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-higgsfield",
@@ -782,7 +815,8 @@ const articles = [
         "公开表态",
         "帖子引用黄仁勋称Higgsfield创始人富有远见；Higgsfield关联帖表示NVIDIA与TCV已投资公司。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-shenhua-ubs-a",
@@ -806,7 +840,8 @@ const articles = [
         "分部变化",
         "Q3自产煤均价417元/吨、同比+10%；电力单位成本同比+24%，主要因利用率下降和煤价上行。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-ms-risk-update",
@@ -830,7 +865,8 @@ const articles = [
         "驱动因素",
         "其上调2027–28年收入预测以反映HBM涨价推高GPU售价，但因GPU占比增加而下调毛利率，并提高CPU业务的少数股东权益假设；目标价降至380元。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   },
   {
     "id": "2026-10-25-shenhua-ubs-h",
@@ -854,7 +890,8 @@ const articles = [
         "煤电分化",
         "Q3自产煤均价417元/吨、同比+10%；电力单位成本同比+24%，煤化工相关产品合计销量同比+48%。"
       ]
-    ]
+    ],
+    "library": "SignalBase"
   }
 ];
 </script><script>/* Preference learning is local to this browser; each dated edition freezes its order. */
@@ -866,15 +903,15 @@ root.ResearchRanking={score,order};if(typeof module!=='undefined')module.exports
 </script><script>const key='wendy-research-preferences-v1';let state={votes:{},orders:{}};let persistent=true;try{state=JSON.parse(localStorage.getItem(key))||state;}catch(e){persistent=false;}state.votes ||= {};state.orders ||= {};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const feed=document.querySelector('#feed'),status=document.querySelector('#status');
 function save(){try{localStorage.setItem(key,JSON.stringify(state));return true;}catch(e){persistent=false;return false;}}
-const dayItems=articles.filter(a=>a.date<=edition.date);const ids=ResearchRanking.order(dayItems,state.votes,edition.date,state.orders[edition.date]);state.orders[edition.date]=ids;save();
+const dayItems=articles.filter(a=>a.date<=edition.date);const ids=ResearchRanking.order(dayItems,state.votes,edition.date,state.orders[edition.date]).slice(0,100);state.orders[edition.date]=ids;save();
 // Keep recent frozen editions only; votes retain their dates for gradual decay.
 for(const day of Object.keys(state.orders).sort().slice(0,-14))delete state.orders[day];
-document.querySelector('#date').textContent=edition.date+' · '+dayItems.length+' 条';
+document.querySelector('#date').textContent=edition.date+' · '+ids.length+' 条';
 const counts=edition.counts,sourceCounts=document.querySelector('#source-counts');
 if(counts){const countText=(name,value)=>`${name} 今日已获取 ${value.retrieved} 篇（接口总量 ${value.reported}）`;sourceCounts.textContent=countText('SignalBase',counts.SignalBase)+' · '+countText('YZData',counts.YZData);}
-feed.innerHTML=ids.map(id=>{const a=dayItems.find(x=>x.id===id);return `<article data-id="${esc(id)}"><details><summary><h2>${esc(a.title)}</h2><p class="brief">${esc(a.brief)}</p><div class="meta">${esc(a.date)} · ${esc(a.source)} · ${esc(a.kind)}<span class="more">展开关键点</span></div></summary><div class="detail">${a.points.map(p=>`<section><h3>${esc(p[0])}</h3><p>${esc(p[1])}</p><small>${esc(a.cite)}</small></section>`).join('')}<p class="original">${esc(a.original)}</p></div></details><div class="controls"><small>${esc(a.cite)}</small><div class="votes" aria-label="调整未来排序"><button data-value="1" aria-label="提高此类内容未来排序" title="更想看此类内容">↑</button><button data-value="-1" aria-label="降低此类内容未来排序" title="减少此类内容">↓</button></div></div></article>`}).join('');
+feed.innerHTML=ids.map(id=>{const a=dayItems.find(x=>x.id===id);return `<article data-id="${esc(id)}"><details><summary><h2>${esc(a.title)}</h2><p class="brief">${esc(a.brief)}</p><div class="meta">${esc(a.date)} · ${esc(a.source)} · <span class="kind ${a.library==='YZData'?'kind-expert':''}">${esc(a.kind)}</span><span class="more">展开关键点</span></div></summary><div class="detail">${a.points.map(p=>`<section><h3>${esc(p[0])}</h3><p>${esc(p[1])}</p><small>${esc(a.cite)}</small></section>`).join('')}<p class="original">${esc(a.original)}</p></div></details><div class="controls"><small>${esc(a.cite)}</small><div class="votes" aria-label="调整未来排序"><button data-value="1" aria-label="提高此类内容未来排序" title="更想看此类内容">↑</button><button data-value="-1" aria-label="降低此类内容未来排序" title="减少此类内容">↓</button></div></div></article>`}).join('');
 if(!dayItems.length)feed.innerHTML='<p class="empty">'+esc(edition.status==='error'?'今日资料暂时无法更新，稍后重试。':'今日暂无新文章。')+'</p>';
 function paint(article){const vote=state.votes[article.dataset.id]?.value;article.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',vote===Number(b.dataset.value)));}
-feed.querySelectorAll('article').forEach(el=>{paint(el);el.querySelectorAll('button').forEach(b=>b.onclick=()=>{const a=dayItems.find(x=>x.id===el.dataset.id),value=Number(b.dataset.value);const previous=state.votes[a.id]?.value;if(previous===value)delete state.votes[a.id];else state.votes[a.id]={value,tags:a.tags,date:edition.date};const stored=save();paint(el);status.textContent=stored?(previous===value?'已取消反馈':'已记下，下次更新调整；今日顺序不变'):'浏览器未允许保存，偏好仅在本次打开期间有效';});});
+feed.querySelectorAll('article').forEach(el=>{paint(el);el.querySelectorAll('button').forEach(b=>b.onclick=()=>{const a=dayItems.find(x=>x.id===el.dataset.id),value=Number(b.dataset.value);const previous=state.votes[a.id]?.value;if(previous===value)delete state.votes[a.id];else state.votes[a.id]={value,tags:a.tags,date:edition.date};save();paint(el);});});
 if(!persistent)status.textContent='浏览器未允许保存，排序偏好暂时无法跨天保留。';
 </script></body></html>
