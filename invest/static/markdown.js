@@ -23,6 +23,19 @@
     return s;
   }
 
+  /* Split "a；- b；- c" style inline bullet runs. Only splits on " - " that follows
+     CJK text/punctuation or bold/closing parens, and only when there are ≥2 such
+     separators, so ordinary hyphens / ranges are left alone. */
+  function splitInlineBullets(text) {
+    const marked = String(text).replace(
+      /([\u3000-\u303f\uff00-\uffef\u4e00-\u9fff*)\]])\s+[-•]\s+(?=\S)/g,
+      "$1\u0000"
+    );
+    const parts = marked.split("\u0000");
+    if (parts.length < 3) return [text];
+    return parts.map((p) => p.trim()).filter((p, idx) => idx === 0 || p);
+  }
+
   function isTableSep(line) {
     return /^\s*\|?[\s:|-]+\|[\s:|-]+\|?\s*$/.test(line) && /\|/.test(line) && /-/.test(line);
   }
@@ -42,18 +55,35 @@
     let inCode = false;
     let codeLang = "";
     let codeBuf = [];
-    let listType = null; // 'ul' | 'ol'
+    let listStack = []; // [{type:'ul'|'ol', indent}]
     let para = [];
 
     function flushPara() {
       if (!para.length) return;
-      out.push("<p>" + inline(para.join(" ")) + "</p>");
+      out.push("<p>" + para.map(inline).join("<br>") + "</p>");
       para = [];
     }
+    function closeTag(t) {
+      return t === "ol" ? "</ol>" : "</ul>";
+    }
     function flushList() {
-      if (!listType) return;
-      out.push(listType === "ol" ? "</ol>" : "</ul>");
-      listType = null;
+      while (listStack.length) out.push("</li>" + closeTag(listStack.pop().type));
+    }
+    function listItem(indent, type, text) {
+      while (listStack.length && listStack[listStack.length - 1].indent > indent) {
+        out.push("</li>" + closeTag(listStack.pop().type));
+      }
+      const top = listStack[listStack.length - 1];
+      if (top && top.indent === indent && top.type === type) {
+        out.push("</li>");
+      } else {
+        if (top && top.indent === indent) {
+          out.push("</li>" + closeTag(listStack.pop().type));
+        }
+        listStack.push({ type, indent });
+        out.push(type === "ol" ? "<ol>" : "<ul>");
+      }
+      out.push("<li>" + inline(text));
     }
     function flushCode() {
       out.push(
@@ -148,32 +178,26 @@
           buf.push(m2[1]);
           i++;
         }
-        out.push("<blockquote><p>" + inline(buf.join(" ")) + "</p></blockquote>");
+        out.push("<blockquote><p>" + buf.map(inline).join("<br>") + "</p></blockquote>");
         continue;
       }
 
-      const ulm = /^[-*+]\s+(.+)$/.exec(line);
-      if (ulm) {
+      // lists (nested by indentation: 2+ spaces or a tab = one level deeper)
+      const lm = /^([ \t]*)([-*+]|\d+[.)])\s+(.+)$/.exec(line);
+      if (lm) {
         flushPara();
-        if (listType !== "ul") {
-          flushList();
-          listType = "ul";
-          out.push("<ul>");
-        }
-        out.push("<li>" + inline(ulm[1]) + "</li>");
+        const indent = lm[1].replace(/\t/g, "    ").length;
+        const type = /^\d/.test(lm[2]) ? "ol" : "ul";
+        const parts = splitInlineBullets(lm[3]);
+        listItem(indent, type, parts[0]);
+        for (let k = 1; k < parts.length; k++) listItem(indent + 2, "ul", parts[k]);
         i++;
         continue;
       }
 
-      const olm = /^\d+\.\s+(.+)$/.exec(line);
-      if (olm) {
-        flushPara();
-        if (listType !== "ol") {
-          flushList();
-          listType = "ol";
-          out.push("<ol>");
-        }
-        out.push("<li>" + inline(olm[1]) + "</li>");
+      // indented continuation line inside a list item → line break in that item
+      if (listStack.length && /^[ \t]+\S/.test(line)) {
+        out.push("<br>" + inline(line.trim()));
         i++;
         continue;
       }
@@ -186,7 +210,19 @@
       }
 
       flushList();
-      para.push(line.trim());
+      {
+        // "text - a - b" written on one line → paragraph + one bullet per " - " part
+        const parts = splitInlineBullets(line.trim());
+        if (parts.length > 1) {
+          flushPara();
+          if (parts[0]) para.push(parts[0]);
+          flushPara();
+          for (let k = 1; k < parts.length; k++) listItem(0, "ul", parts[k]);
+          flushList();
+        } else {
+          para.push(line.trim());
+        }
+      }
       i++;
     }
 
@@ -197,4 +233,5 @@
   }
 
   global.renderMarkdown = renderMarkdown;
+  global.renderInline = inline;
 })(typeof window !== "undefined" ? window : globalThis);

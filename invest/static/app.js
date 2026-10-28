@@ -540,6 +540,79 @@
     );
   }
 
+  /* 今日总结 lead: keep only the time, drop session labels
+     ("港股 A 股开盘 · HK/A OPEN、KR 盘中 · 过去 24 小时："), and show the
+     summary as short separate lines for phones. */
+  const SESSION_KW = /(开盘|收盘|盘中|午盘|午休|收市|已收|盘前|盘后|休市|OPEN|CLOSE|亚盘|美股|韩股|港股|A ?股)/i;
+  function splitDailyLead(md) {
+    const lines = String(md || "").replace(/\r\n/g, "\n").split("\n");
+    let i = 0;
+    while (i < lines.length && (!lines[i].trim() || /^#\s/.test(lines[i]))) i++;
+    if (i >= lines.length || !/^>/.test(lines[i])) return null;
+    const buf = [];
+    while (i < lines.length && /^>/.test(lines[i])) {
+      buf.push(lines[i].replace(/^>\s?/, ""));
+      i++;
+    }
+    let text = buf.join("\n").trim();
+    if (/^\*\*[\s\S]*\*\*$/.test(text) && text.indexOf("**", 2) === text.length - 2) {
+      text = text.slice(2, -2).trim();
+    }
+    let time = "";
+    const tm = /^(?:\*\*)?(\d{1,2}\/\d{1,2}\s+\d{1,2}:\d{2}\s*(?:PT|PDT|PST)?)(?:\*\*)?\s*(?:[·•|—–\-]\s*)?/.exec(text);
+    if (tm) {
+      time = tm[1].trim();
+      text = text.slice(tm[0].length);
+    }
+    // Drop leading short session-label segments, then a leading "过去 xx：" label.
+    const segs = text.split(/\s*·\s*/);
+    while (
+      segs.length > 1 &&
+      segs[0].length <= 45 &&
+      !/^过去/.test(segs[0]) &&
+      (!/[，；。：:]/.test(segs[0]) || SESSION_KW.test(segs[0]))
+    ) {
+      segs.shift();
+    }
+    text = segs.join(" · ").replace(/^过去[^：:\n]{0,24}[：:]\s*/, "");
+    const items = text
+      .split(/\n+|；|;\s|。(?=\S)/)
+      .map((x) => {
+        let y = x.replace(/^\s*[-–•]\s+/, "").replace(/[；;。\s]+$/, "").trim();
+        if ((y.match(/\*\*/g) || []).length % 2) y = y.replace(/\*\*/g, "");
+        return y;
+      })
+      .filter(Boolean);
+    return { time, items, rest: lines.slice(i).join("\n") };
+  }
+
+  function renderDailySummary(md) {
+    const lead = splitDailyLead(md);
+    if (!lead || (!lead.time && !lead.items.length)) return renderMarkdown(md);
+    const inl = window.renderInline || escapeText;
+    let h = '<div class="daily-lead">';
+    if (lead.time) h += '<div class="lead-time">' + escapeText(lead.time) + "</div>";
+    if (lead.items.length) {
+      h += '<ul class="lead-list">' + lead.items.map((x) => "<li>" + inl(x) + "</li>").join("") + "</ul>";
+    }
+    h += "</div>";
+    return h + renderMarkdown(lead.rest);
+  }
+
+  /* Collapsible homepage monitor panel (私募信贷 / AI 泡沫 / 韩股杠杆). */
+  function monitorPanel(cls, aria, title, phase, oneLine, bodyHtml) {
+    return (
+      '<details class="pc-strip pc-collapsible ' + cls + '" aria-label="' + escapeText(aria) + '">' +
+      '<summary class="pc-sum">' +
+      '<span class="pc-sum-top"><span class="pc-sum-title">' + escapeText(title) + "</span>" +
+      (phase ? '<span class="pc-phase">' + escapeText(phase) + "</span>" : "") +
+      '<span class="pc-chev" aria-hidden="true"></span></span>' +
+      (oneLine ? '<span class="pc-sum-line">' + escapeText(oneLine) + "</span>" : "") +
+      "</summary>" +
+      '<div class="pc-body">' + bodyHtml + "</div></details>"
+    );
+  }
+
   async function renderHome() {
     const data = await api("/api/overview");
     if (genAt) genAt.textContent = "更新于 " + fmtTime(data.generated_at);
@@ -553,7 +626,7 @@
         escapeText(summary.date) +
         "</h2>" +
         '<div class="md-body">' +
-        renderMarkdown(summary.markdown) +
+        renderDailySummary(summary.markdown) +
         "</div></section>";
     }
 
@@ -594,25 +667,21 @@
             .join("") +
           "</div>";
       }
-      html +=
-        '<section class="pc-strip sev-' +
-        escapeText(sev) +
-        '" aria-label="私募信贷">' +
-        "<h2>" +
-        escapeText(pc.title_zh || "私募信贷") +
-        (phase
-          ? ' <span class="pc-phase">' + escapeText(phase) + "</span>"
-          : "") +
-        "</h2>" +
+      html += monitorPanel(
+        "sev-" + sev,
+        "私募信贷",
+        pc.title_zh || "私募信贷",
+        phase,
+        pc.summary_zh || "",
         '<p class="pc-summary">' +
-        escapeText(pc.summary_zh || "") +
-        "</p>" +
-        metrics +
-        bullets +
-        (pc.as_of
-          ? '<div class="pc-meta">更新 ' + escapeText(fmtTime(pc.as_of)) + "</div>"
-          : "") +
-        "</section>";
+          escapeText(pc.summary_zh || "") +
+          "</p>" +
+          metrics +
+          bullets +
+          (pc.as_of
+            ? '<div class="pc-meta">更新 ' + escapeText(fmtTime(pc.as_of)) + "</div>"
+            : "")
+      );
     }
 
 
@@ -670,29 +739,26 @@
           bubTitle +
           "</a>"
         : bubTitle;
-      html +=
-        '<section class="pc-strip bubble-strip sev-' +
-        escapeText(sev) +
-        '" aria-label="AI泡沫监测">' +
-        "<h2>" +
-        bubTitleHtml +
-        (phase
-          ? ' <span class="pc-phase">' + escapeText(phase) + "</span>"
-          : "") +
-        "</h2>" +
+      html += monitorPanel(
+        "bubble-strip sev-" + sev,
+        "AI泡沫监测",
+        bub.title_zh || "AI 泡沫监测",
+        phase,
+        bub.summary_zh || "",
         '<p class="pc-summary">' +
-        escapeText(bub.summary_zh || "") +
-        "</p>" +
-        metrics +
-        bullets +
-        '<div class="pc-meta">' +
-        (issue ? issue + " · " : "") +
-        (bub.source_as_of
-          ? "对方 as_of " + escapeText(String(bub.source_as_of)) + " · "
-          : "") +
-        (bub.as_of ? "我方更新 " + escapeText(fmtTime(bub.as_of)) : "") +
-        src +
-        "</div></section>";
+          escapeText(bub.summary_zh || "") +
+          "</p>" +
+          metrics +
+          bullets +
+          '<div class="pc-meta">' +
+          (issue ? issue + " · " : "") +
+          (bub.source_as_of
+            ? "对方 as_of " + escapeText(String(bub.source_as_of)) + " · "
+            : "") +
+          (bub.as_of ? "我方更新 " + escapeText(fmtTime(bub.as_of)) : "") +
+          src +
+          "</div>"
+      );
     }
 
 
@@ -746,31 +812,28 @@
           kimTitle +
           "</a>"
         : kimTitle;
-      html +=
-        '<section class="pc-strip kim-strip sev-' +
-        escapeText(sev) +
-        '" aria-label="韩股杠杆监控">' +
-        "<h2>" +
-        kimTitleHtml +
-        (phase
-          ? ' <span class="pc-phase">' + escapeText(phase) + "</span>"
-          : "") +
-        "</h2>" +
+      html += monitorPanel(
+        "kim-strip sev-" + sev,
+        "韩股杠杆监控",
+        kim.title_zh || "韩股杠杆监控",
+        phase,
+        kim.summary_zh || "",
         '<p class="pc-summary">' +
-        escapeText(kim.summary_zh || "") +
-        "</p>" +
-        metrics +
-        bullets +
-        '<div class="pc-meta">' +
-        (kim.source_as_of
-          ? "对方 asof " + escapeText(String(kim.source_as_of)) + " · "
-          : "") +
-        (kim.source_generated
-          ? "生成 " + escapeText(String(kim.source_generated)) + " BJ · "
-          : "") +
-        (kim.as_of ? "我方更新 " + escapeText(fmtTime(kim.as_of)) : "") +
-        src +
-        "</div></section>";
+          escapeText(kim.summary_zh || "") +
+          "</p>" +
+          metrics +
+          bullets +
+          '<div class="pc-meta">' +
+          (kim.source_as_of
+            ? "对方 asof " + escapeText(String(kim.source_as_of)) + " · "
+            : "") +
+          (kim.source_generated
+            ? "生成 " + escapeText(String(kim.source_generated)) + " BJ · "
+            : "") +
+          (kim.as_of ? "我方更新 " + escapeText(fmtTime(kim.as_of)) : "") +
+          src +
+          "</div>"
+      );
     }
 
 
