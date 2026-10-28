@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>投资观察看板</title>
+  <link rel="stylesheet" href="static/app.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <a href="#/" class="brand" data-link>
+        <span class="brand-mark">投</span>
+        <span class="brand-text">投资观察看板</span>
+      </a>
+      <nav class="nav">
+        <a href="#/" class="nav-link" data-link data-route="home">总览</a>
+        <a href="#/logs" class="nav-link" data-link data-route="logs">日志</a>
+      </nav>
+      <button type="button" id="refresh-btn" class="btn ghost" title="刷新">刷新</button>
+    </header>
+
+    <main id="main" class="main">
+      <div class="loading">加载中…</div>
+    </main>
+
+    <footer class="footer">
+      <span>静态快照 · 数据截至 2026-10-27 18:45 PT</span>
+      <span id="gen-at"></span>
+    </footer>
+  </div>
+  <script src="static/static-shim.js"></script>
+  <script src="static/markdown.js"></script>
+  <script src="static/app.js"></script>
+</body>
+</html>
