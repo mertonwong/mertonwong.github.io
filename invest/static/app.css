@@ -1033,3 +1033,51 @@ details.pc-collapsible[open] .pc-chev { transform: rotate(-135deg); }
 details.pc-collapsible[open] .pc-sum-line { display: none; }
 details.pc-collapsible > .pc-body { padding: 0 16px 12px; }
 details.pc-collapsible { margin-bottom: 12px; }
+
+/* ---- Card header: small logo + ticker + name on one line ---- */
+.card-top { align-items: center; }
+.card-top .sym-row { flex: 1 1 auto; gap: 7px; overflow: hidden; }
+.ticker-logo.sm { width: 22px; height: 22px; border-radius: 6px; }
+.ticker-logo.sm.fallback { font-size: 8px; }
+.sym-inline {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.sym-inline .sym { flex: none; line-height: 22px; }
+.sym-inline .sym-name {
+  margin-top: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card-top .badge { flex: none; }
+.card-foot { display: none; }
+
+/* ---- One bullet level only: nested lists sit flush with their parent ----
+   (今日总结 always; every markdown body on phones) */
+.summary-strip .md-body li > ul,
+.summary-strip .md-body li > ol {
+  margin-left: -1.35em;
+  font-size: 1em;
+}
+.summary-strip .md-body li > ul { list-style-type: disc; }
+@media (max-width: 560px) {
+  .md-body li > ul,
+  .md-body li > ol { margin-left: -1.35em; font-size: 1em; }
+  .md-body li > ul { list-style-type: disc; }
+}
+
+/* ---- Scenario tables: probability column never wraps ---- */
+.md-body th.col-prob,
+.md-body td.col-prob {
+  white-space: nowrap;
+  min-width: 3.4em;
+  text-align: center;
+  padding-left: 6px;
+  padding-right: 6px;
+}

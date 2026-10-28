@@ -139,15 +139,25 @@
           rows.push(splitRow(lines[i]));
           i++;
         }
+        // Probability columns (情景/形态 tables): keep "50%" on one line and
+        // drop "(原 40%)" history suffixes — readers want the current weight.
+        const probCols = headers.map((h) => /概率|权重|probab/i.test(h));
+        const cleanProb = (c) =>
+          c
+            .replace(/\s*[（(]\s*原[^）)]*[）)]/g, "")
+            .replace(/\s*←\s*原.*$/, "")
+            .trim();
         let html = "<table><thead><tr>";
-        headers.forEach((h) => {
-          html += "<th>" + inline(h) + "</th>";
+        headers.forEach((h, k) => {
+          html += (probCols[k] ? '<th class="col-prob">' : "<th>") + inline(h) + "</th>";
         });
         html += "</tr></thead><tbody>";
         rows.forEach((row) => {
           html += "<tr>";
-          row.forEach((c) => {
-            html += "<td>" + inline(c) + "</td>";
+          row.forEach((c, k) => {
+            html += probCols[k]
+              ? '<td class="col-prob">' + inline(cleanProb(c)) + "</td>"
+              : "<td>" + inline(c) + "</td>";
           });
           html += "</tr>";
         });

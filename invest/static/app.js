@@ -22,10 +22,6 @@
     "MSFT",
     "SNPS",
     "VRT",
-    "GLW",
-    "APH",
-    "ARM",
-    "ANET",
     "NBIS",
     "MRVL",
     "QCOM",
@@ -525,7 +521,7 @@
       .slice(0, 2)
       .toUpperCase() || "?";
     const fallback =
-      '<span class="ticker-logo fallback" aria-hidden="true">' +
+      '<span class="ticker-logo fallback' + (cls ? " " + cls : "") + '" aria-hidden="true">' +
       escapeText(initials) +
       "</span>";
     if (!url) return fallback;
@@ -534,7 +530,7 @@
       (cls ? " " + cls : "") +
       '" src="' +
       escapeText(url) +
-      '" alt="" loading="lazy" decoding="async" onerror="this.classList.add(\'broken\');this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'ticker-logo fallback\',textContent:\'' +
+      '" alt="" loading="lazy" decoding="async" onerror="this.classList.add(\'broken\');this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'ticker-logo fallback' + (cls ? " " + cls : "") + '\',textContent:\'' +
       escapeText(initials).replace(/'/g, "") +
       '\'}))" />'
     );
@@ -866,12 +862,12 @@
         '">' +
         '<div class="card-top">' +
         '<div class="sym-row">' +
-        logoHtml(t) +
-        '<div class="sym-text"><div class="sym">' +
+        logoHtml(t, "sm") +
+        '<div class="sym-text sym-inline"><span class="sym">' +
         escapeText(t.ticker) +
-        '</div><div class="sym-name">' +
+        '</span><span class="sym-name">' +
         escapeText(t.name || "") +
-        "</div></div></div>" +
+        "</span></div></div>" +
         '<span class="badge ' +
         escapeText(String(t.status || "watch").toLowerCase()) +
         (hit ? " hit-badge" : "") +
@@ -898,14 +894,7 @@
         '<div class="summary">' +
         escapeText(verdict) +
         "</div>" +
-        '<div class="card-foot"><span>' +
-        escapeText(
-          (t.asset_class || "") +
-            (t.markets && t.markets.length ? " · " + t.markets.join("/") : "")
-        ) +
-        "</span><span>" +
-        escapeText(t.last_price_at ? fmtTime(t.last_price_at) : "") +
-        "</span></div></a>";
+        "</a>";
     }
     html += "</div>";
     main.innerHTML = html;
@@ -939,7 +928,7 @@
     }
 
     const aCell = a != null ? fmtMoney(a, ticker) : "—";
-    const bCell = dual && b != null ? fmtMoney(b, ticker) : a != null ? "（同 A / 单轨）" : "—";
+    const bCell = dual && b != null ? fmtMoney(b, ticker) : "-";
 
     return (
       '<div class="val-rails" aria-label="估值对照">' +
