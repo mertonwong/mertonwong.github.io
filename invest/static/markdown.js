@@ -142,11 +142,16 @@
         // Probability columns (情景/形态 tables): keep "50%" on one line and
         // drop "(原 40%)" history suffixes — readers want the current weight.
         const probCols = headers.map((h) => /概率|权重|probab/i.test(h));
-        const cleanProb = (c) =>
-          c
-            .replace(/\s*[（(]\s*原[^）)]*[）)]/g, "")
-            .replace(/\s*←\s*原.*$/, "")
+        const cleanProb = (c) => {
+          // "52%（10/19 由 45%）" / "**50%**（原 40%）" → just the current weight
+          const m = c.match(
+            /^(\**\s*[~≈约]?\d+(?:\.\d+)?(?:\s*[–-]\s*\d+(?:\.\d+)?)?\s*%\s*\**)\s*[（(].*$/
+          );
+          if (m) return m[1].trim();
+          return c
+            .replace(/\s*[（(]\s*(?:原|由|自)[^）)]*[）)]/g, "")
             .trim();
+        };
         let html = "<table><thead><tr>";
         headers.forEach((h, k) => {
           html += (probCols[k] ? '<th class="col-prob">' : "<th>") + inline(h) + "</th>";
