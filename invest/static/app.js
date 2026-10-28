@@ -70,6 +70,19 @@
     });
   }
 
+  /* Day change % as reported by the price source (fetch_quotes.py).
+     Colour: green = up, red = down (same green/red tokens the dashboard already uses). */
+  function fmtDayChange(t) {
+    const v = t && t.day_change_pct;
+    if (v == null || v === "" || Number.isNaN(Number(v))) return "";
+    const x = Number(v);
+    const cls = x > 0 ? "up" : x < 0 ? "down" : "flat";
+    const sign = x > 0 ? "+" : x < 0 ? "−" : "";
+    const lab = t.day_change_basis === "24h" ? '<span class="chg-basis">24h</span>' : "";
+    return '<span class="day-chg ' + cls + '" title="' + (t.day_change_basis === "24h" ? "24 小时涨跌" : "今日涨跌") + '">' +
+      lab + sign + Math.abs(x).toFixed(2) + "%</span>";
+  }
+
   function fmtMoney(n, ticker) {
     if (n == null || n === "") return "—";
     const x = Number(n);
@@ -877,7 +890,7 @@
         "</span></div>" +
         '<div class="price-row">' +
         '<div class="price-block">' +
-        '<div class="price-label">最新价</div>' +
+        '<div class="price-label"><span>最新价</span>' + fmtDayChange(t) + "</div>" +
         '<div class="price">' +
         fmtMoney(t.last_price, t.ticker) +
         "</div></div>" +
@@ -974,7 +987,7 @@
       escapeText(data.status_label || data.status || "") +
       "</span></h1>" +
       '<div class="stats">' +
-      '<div class="stat"><div class="label">最新价</div><div class="value">' +
+      '<div class="stat"><div class="label stat-label-chg"><span>最新价</span>' + fmtDayChange(data) + '</div><div class="value">' +
       fmtMoney(data.last_price, data.ticker) +
       "</div></div>" +
       '<div class="stat stat-target' +

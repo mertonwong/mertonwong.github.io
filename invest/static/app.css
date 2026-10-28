@@ -1081,3 +1081,40 @@ details.pc-collapsible { margin-bottom: 12px; }
   padding-left: 6px;
   padding-right: 6px;
 }
+
+/* Day change % next to 最新价 (source-reported; green up / red down) */
+.price-label, .stat-label-chg {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+}
+.day-chg {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.day-chg.up { color: var(--green); }
+.day-chg.down { color: var(--red); }
+.day-chg.flat { color: var(--text-dim); }
+.day-chg .chg-basis {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-mute);
+  margin-right: 3px;
+}
+.stat-label-chg { justify-content: flex-start; gap: 8px; }
+/* 今日总结 section headings (市场情绪 / 大盘归因 / 重要变化 / 近端日历) must stay
+   visible: the generic .attr-strip h2 hide rule above has equal specificity and
+   used to win, so 重要变化 bullets looked like part of the last ### block (私募信贷). */
+.attr-strip.summary-strip .md-body h2 {
+  display: block;
+  font-size: 15.5px;
+  color: var(--amber);
+  border: none;
+  margin: 0.95em 0 0.4em;
+  padding: 0;
+}
+.attr-strip.summary-strip .md-body h3 { font-size: 14.5px; margin: 0.8em 0 0.3em; }
