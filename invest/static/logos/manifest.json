@@ -2,6 +2,7 @@
   "000660.KS": "/static/logos/000660_KS.png",
   "0700.HK": "/static/logos/0700_HK.svg",
   "0883.HK": "/static/logos/0883_HK.png",
+  "300750.SZ": "/static/logos/300750_SZ.png",
   "600519.SS": "/static/logos/600519_SS.png",
   "9992.HK": "/static/logos/9992_HK.png",
   "AAPL": "/static/logos/AAPL.png",
@@ -36,8 +37,8 @@
   "QCOM": "/static/logos/QCOM.png",
   "SNDK": "/static/logos/SNDK.png",
   "SNPS": "/static/logos/SNPS.png",
+  "SPCX": "/static/logos/SPCX.png",
   "TSLA": "/static/logos/TSLA.png",
   "TSM": "/static/logos/TSM.png",
-  "VRT": "/static/logos/VRT.png",
-  "SPCX": "/static/logos/SPCX.png"
+  "VRT": "/static/logos/VRT.png"
 }
