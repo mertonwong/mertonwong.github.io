@@ -3,40 +3,26 @@
   const genAt = document.getElementById("gen-at");
   const refreshBtn = document.getElementById("refresh-btn");
 
-  // 用户给定默认顺序：原测试标的 + 新增 24 只
-  const DEFAULT_ORDER = [
-    "BTC",
-    "INTC",
-    "GOOG",
-    "TSM",
-    "ASML",
-    "NVDA",
-    "AVGO",
-    "000660.KS",
-    "MU",
-    "SNDK",
-    "LITE",
-    "COHR",
-    "PLTR",
-    "APP",
-    "MSFT",
-    "SNPS",
-    "VRT",
-    "NBIS",
-    "MRVL",
-    "QCOM",
-    "TSLA",
-    "CRCL",
-    "HOOD",
-  ];
+  // Card order: published ui_order.json (already applied to data.tickers) is
+  // the source of truth. Browser localStorage may keep a same-publish drag
+  // reorder; it is ignored when the published order changes (new sig).
   const ORDER_KEY = "invest-watch-card-order";
+  const ORDER_SIG_KEY = "invest-watch-card-order-sig";
+  let officialOrderSig = "";
 
-  function loadSavedOrder() {
+  function tickersSig(tickers) {
+    return tickers.map((t) => String(t && t.ticker != null ? t.ticker : t)).join("\n");
+  }
+
+  function loadSavedOrder(officialSig) {
     try {
       const raw = localStorage.getItem(ORDER_KEY);
       if (!raw) return null;
       const arr = JSON.parse(raw);
       if (!Array.isArray(arr) || !arr.length) return null;
+      const sig = localStorage.getItem(ORDER_SIG_KEY);
+      // Legacy saves have no sig and were often based on a stale DEFAULT_ORDER.
+      if (!sig || !officialSig || sig !== officialSig) return null;
       return arr.map(String);
     } catch {
       return null;
@@ -46,6 +32,7 @@
   function saveOrder(tickers) {
     try {
       localStorage.setItem(ORDER_KEY, JSON.stringify(tickers));
+      if (officialOrderSig) localStorage.setItem(ORDER_SIG_KEY, officialOrderSig);
     } catch {
       /* ignore quota */
     }
@@ -57,9 +44,10 @@
   }
 
   function sortTickers(tickers) {
-    const saved = loadSavedOrder();
-    const base = saved && saved.length ? saved : DEFAULT_ORDER;
-    const rank = new Map(base.map((t, i) => [String(t).toUpperCase(), i]));
+    officialOrderSig = tickersSig(tickers);
+    const saved = loadSavedOrder(officialOrderSig);
+    if (!saved || !saved.length) return tickers.slice();
+    const rank = new Map(saved.map((t, i) => [String(t).toUpperCase(), i]));
     return tickers.slice().sort((a, b) => {
       const ta = String(a.ticker || "").toUpperCase();
       const tb = String(b.ticker || "").toUpperCase();
