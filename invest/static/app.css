@@ -1106,9 +1106,9 @@ details.pc-collapsible { margin-bottom: 12px; }
   margin-right: 3px;
 }
 .stat-label-chg { justify-content: flex-start; gap: 8px; }
-/* 今日总结 section headings (市场情绪 / 大盘归因 / 重要变化 / 近端日历) must stay
+/* 今日总结 section headings (市场情绪 / 大盘归因 / 近端日历) must stay
    visible: the generic .attr-strip h2 hide rule above has equal specificity and
-   used to win, so 重要变化 bullets looked like part of the last ### block (私募信贷). */
+   used to win, so later ## bullets looked like part of the last ### block (私募信贷). */
 .attr-strip.summary-strip .md-body h2 {
   display: block;
   font-size: 15.5px;
